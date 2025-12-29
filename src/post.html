@@ -13,7 +13,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
 
-    <!-- 3. Configuration -->
+    <!-- 3. Highlight.js for Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+
+    <!-- Highlight.js Line Numbers Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/styles/github.min.css">
+
+    <!-- 4. Configuration -->
     <style>
         :root {
             --bg-color: #f3f4f6;
@@ -30,6 +39,33 @@
         }
 
         .custom-border { border-color: var(--border-color); }
+
+        /* Custom styling for code blocks */
+        pre code.hljs {
+            padding: 1.5rem;
+            /* Removed border-radius here to let the container handle it */
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Line numbers styling override */
+        .hljs-ln-numbers {
+            padding-right: 1rem !important;
+            border-right: 1px solid #30363d !important;
+            margin-right: 1rem !important;
+            text-align: right;
+            color: #6e7681;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .hljs-ln-code {
+            padding-left: 1rem !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
@@ -89,6 +125,38 @@
                 })
                 .then(data => {
                     document.getElementById('post-content-placeholder').innerHTML = data;
+                    // Apply syntax highlighting to any code blocks in the loaded content
+                    document.querySelectorAll('pre code').forEach((block) => {
+                        // Smart indentation fix
+                        let lines = block.textContent.split('\n');
+
+                        // Remove empty lines from start and end
+                        while (lines.length > 0 && lines[0].trim() === '') lines.shift();
+                        while (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+
+                        // Find minimum indentation
+                        let minIndent = Infinity;
+                        lines.forEach(line => {
+                            if (line.trim().length > 0) {
+                                const indent = line.search(/\S/);
+                                if (indent !== -1 && indent < minIndent) {
+                                    minIndent = indent;
+                                }
+                            }
+                        });
+
+                        // Apply de-indentation if needed
+                        if (minIndent !== Infinity && minIndent > 0) {
+                            lines = lines.map(line => {
+                                // Only de-indent if the line is long enough, otherwise leave empty lines empty
+                                return line.length >= minIndent ? line.slice(minIndent) : line;
+                            });
+                        }
+
+                        block.textContent = lines.join('\n');
+                        hljs.highlightElement(block);
+                        hljs.lineNumbersBlock(block);
+                    });
                 })
                 .catch(error => {
                     document.getElementById('post-content-placeholder').innerHTML = `
