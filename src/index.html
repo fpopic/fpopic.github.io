@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Page Template</title>
+    
+    <!-- 1. Tailwind CSS (Loads the styling engine) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. Google Fonts (Manrope matches the 'ourshare' vibe closely) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- 3. YOUR CONFIGURATION (Tune this later!) -->
+    <style>
+        :root {
+            /* CHANGE COLORS HERE */
+            --bg-color: #f3f4f6;       /* Light Grey Background */
+            --text-color: #111827;     /* Almost Black Text */
+            --border-color: #000000;   /* Strong Borders (The rectangular look) */
+            --accent-color: #7c3aed;   /* Purple Accent (Button/Highlights) */
+            --accent-text: #ffffff;    /* Text on buttons */
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Helper to apply your variables to Tailwind */
+        .custom-border { border-color: var(--border-color); }
+        .custom-bg { background-color: var(--bg-color); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+
+    <!-- MAIN CONTAINER (The big box) -->
+    <div class="w-full max-w-[1200px] border-2 custom-border bg-white shadow-2xl">
+
+        <!-- NAV BAR -->
+        <nav class="flex flex-col sm:flex-row justify-between items-center border-b-2 custom-border p-6">
+            <!-- Logo / Name -->
+            <div class="text-3xl font-extrabold tracking-tight mb-4 sm:mb-0">
+                NAME / BRAND
+            </div>
+            <!-- Links -->
+            <div class="flex space-x-8 text-sm font-bold uppercase tracking-wider">
+                <a href="blog.html" class="hover:text-[var(--accent-color)] transition-colors">Blog</a>
+                <a href="#" class="hover:text-[var(--accent-color)] transition-colors">Approach</a>
+                <a href="#" class="hover:text-[var(--accent-color)] transition-colors">About</a>
+                <a href="#" class="hover:text-[var(--accent-color)] transition-colors">Contact</a>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION (Split Rectangles) -->
+        <div class="grid grid-cols-1 md:grid-cols-12">
+            
+            <!-- Left Box (Headline) -->
+            <div class="md:col-span-8 p-10 md:p-16 border-b-2 md:border-b-0 md:border-r-2 custom-border flex flex-col justify-center">
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-[0.9] mb-8">
+                    HEADLINE GOES<br>
+                    <span style="color: var(--accent-color);">RIGHT HERE.</span>
+                </h1>
+                <p class="text-xl md:text-2xl font-medium max-w-lg leading-relaxed opacity-80">
+                    This is the subheadline text. It mimics the stark, clean rectangular style of the reference site.
+                </p>
+            </div>
+
+            <!-- Right Box (Image or Stats) -->
+            <div class="md:col-span-4 p-10 flex flex-col justify-center items-center bg-gray-50">
+                <!-- Circular Element Example -->
+                <div class="w-48 h-48 rounded-full border-2 custom-border flex items-center justify-center bg-white mb-6">
+                    <span class="text-4xl font-bold">84%</span>
+                </div>
+                <p class="text-center text-sm font-semibold max-w-[200px]">
+                    Key statistic or small graphical element goes in this rectangle.
+                </p>
+            </div>
+        </div>
+
+        <!-- DIVIDER LINE -->
+        <div class="border-t-2 custom-border w-full h-0"></div>
+
+        <!-- CONTENT GRID (The "So funktioniert's" section) -->
+        <div class="grid grid-cols-1 md:grid-cols-2">
+            
+            <!-- Cell 1: Description -->
+            <div class="p-10 md:p-16 border-b-2 md:border-b-0 md:border-r-2 custom-border">
+                <h2 class="text-3xl font-bold mb-6">How it works</h2>
+                <p class="text-lg leading-relaxed mb-8">
+                    Here is where you explain the process. The layout is divided strictly by lines.
+                </p>
+                
+                <!-- Native HTML Accordion (No JS needed!) -->
+                <div class="space-y-4">
+                    <details class="group cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold p-4 border-2 custom-border rounded-full hover:bg-gray-50 transition">
+                            <span>1. Step One Title</span>
+                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <div class="p-4 text-sm mt-2 ml-2">
+                            Detailed explanation of step one goes here.
+                        </div>
+                    </details>
+
+                    <details class="group cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold p-4 border-2 custom-border rounded-full hover:bg-gray-50 transition">
+                            <span>2. Step Two Title</span>
+                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <div class="p-4 text-sm mt-2 ml-2">
+                            Detailed explanation of step two goes here.
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Cell 2: Call to Action -->
+            <div class="p-10 md:p-16 flex flex-col justify-between bg-[var(--bg-color)]">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">The Vision</h3>
+                    <p class="mb-8">
+                        The rectangular division allows you to separate distinct thoughts clearly.
+                    </p>
+                </div>
+                
+                <!-- Big Button -->
+                <button class="w-full py-6 text-xl font-bold border-2 custom-border rounded-full transition-transform hover:-translate-y-1 hover:shadow-lg"
+                        style="background-color: var(--accent-color); color: var(--accent-text);">
+                    CALL TO ACTION
+                </button>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="border-t-2 custom-border p-8 text-center bg-white">
+            <div class="flex justify-center space-x-6 mb-4">
+                <!-- Fake Social Icons -->
+                <a href="https://www.linkedin.com/in/fpopic" target="_blank" class="w-8 h-8 border-2 custom-border rounded-full flex items-center justify-center font-bold hover:bg-gray-100 transition-colors">in</a>
+                <a href="https://github.com/fpopic/" target="_blank" class="w-8 h-8 border-2 custom-border rounded-full flex items-center justify-center font-bold hover:bg-gray-100 transition-colors">gh</a>
+                <a href="mailto:filip@fpopic.com" class="w-8 h-8 border-2 custom-border rounded-full flex items-center justify-center font-bold hover:bg-gray-100 transition-colors">@</a>
+            </div>
+            <p class="text-xs font-semibold uppercase tracking-widest opacity-60">
+                Impressum • Data Privacy
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
