@@ -49,6 +49,9 @@
             <!-- Links -->
             <div class="flex space-x-8 text-sm font-bold uppercase tracking-wider">
                 <a href="blog.html" class="hover:text-[var(--accent-color)] transition-colors">Blog</a>
+                <a href="#" class="hover:text-[var(--accent-color)] transition-colors">Approach</a>
+                <a href="#" class="hover:text-[var(--accent-color)] transition-colors">About</a>
+                <a href="#" class="hover:text-[var(--accent-color)] transition-colors">Contact</a>
             </div>
         </nav>
 
@@ -133,17 +136,14 @@
         </div>
 
         <!-- FOOTER -->
-        <div class="border-t-2 custom-border p-8 text-center bg-white">
-            <div class="flex justify-center space-x-6 mb-4">
-                <!-- Fake Social Icons -->
-                <a href="https://www.linkedin.com/in/fpopic" target="_blank" class="w-8 h-8 border-2 custom-border rounded-full flex items-center justify-center font-bold hover:bg-gray-100 transition-colors">in</a>
-                <a href="https://github.com/fpopic/" target="_blank" class="w-8 h-8 border-2 custom-border rounded-full flex items-center justify-center font-bold hover:bg-gray-100 transition-colors">gh</a>
-                <a href="mailto:filip@fpopic.com" class="w-8 h-8 border-2 custom-border rounded-full flex items-center justify-center font-bold hover:bg-gray-100 transition-colors">@</a>
-            </div>
-            <p class="text-xs font-semibold uppercase tracking-widest opacity-60">
-                Impressum • Data Privacy
-            </p>
-        </div>
+        <div id="footer-placeholder"></div>
+        <script>
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+        </script>
 
     </div>
 
