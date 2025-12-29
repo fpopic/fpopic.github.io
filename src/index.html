@@ -51,7 +51,7 @@
                     const navLinks = document.getElementById('nav-links');
                     if (navLinks) {
                         navLinks.innerHTML = `
-                            <a href="blog.html" class="hover:text-[var(--accent-color)] transition-colors">Blog</a>
+                            <!-- No extra links needed on home page -->
                         `;
                     }
                 });
@@ -62,12 +62,9 @@
             
             <!-- Left Box (Headline) -->
             <div class="md:col-span-8 p-10 md:p-16 border-b-2 md:border-b-0 md:border-r-2 custom-border flex flex-col justify-center">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-[0.9] mb-8">
-                    HEADLINE GOES<br>
-                    <span style="color: var(--accent-color);">RIGHT HERE.</span>
-                </h1>
-                <p class="text-xl md:text-2xl font-medium max-w-lg leading-relaxed opacity-80">
-                    This is the subheadline text. It mimics the stark, clean rectangular style of the reference site.
+                <h1 class="text-5xl font-extrabold mb-4">Engineering Blog</h1>
+                <p class="text-xl opacity-80 max-w-2xl">
+                    Thoughts on Computer Science, Software Engineering, Data and Engineering Leadership.
                 </p>
             </div>
 
@@ -75,10 +72,10 @@
             <div class="md:col-span-4 p-10 flex flex-col justify-center items-center bg-gray-50">
                 <!-- Circular Element Example -->
                 <div class="w-48 h-48 rounded-full border-2 custom-border flex items-center justify-center bg-white mb-6">
-                    <span class="text-4xl font-bold">84%</span>
+                    <img src="fpopic.com.qr.png" alt="QR Code" class="w-32 h-32 object-contain">
                 </div>
                 <p class="text-center text-sm font-semibold max-w-[200px]">
-                    Key statistic or small graphical element goes in this rectangle.
+                    Scan to visit on mobile
                 </p>
             </div>
         </div>
@@ -86,54 +83,32 @@
         <!-- DIVIDER LINE -->
         <div class="border-t-2 custom-border w-full h-0"></div>
 
-        <!-- CONTENT GRID (The "So funktioniert's" section) -->
+        <!-- BLOG POSTS LIST -->
         <div class="grid grid-cols-1 md:grid-cols-2">
-            
-            <!-- Cell 1: Description -->
-            <div class="p-10 md:p-16 border-b-2 md:border-b-0 md:border-r-2 custom-border">
-                <h2 class="text-3xl font-bold mb-6">How it works</h2>
-                <p class="text-lg leading-relaxed mb-8">
-                    Here is where you explain the process. The layout is divided strictly by lines.
-                </p>
-                
-                <!-- Native HTML Accordion (No JS needed!) -->
-                <div class="space-y-4">
-                    <details class="group cursor-pointer">
-                        <summary class="flex justify-between items-center font-bold p-4 border-2 custom-border rounded-full hover:bg-gray-50 transition">
-                            <span>1. Step One Title</span>
-                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <div class="p-4 text-sm mt-2 ml-2">
-                            Detailed explanation of step one goes here.
-                        </div>
-                    </details>
-
-                    <details class="group cursor-pointer">
-                        <summary class="flex justify-between items-center font-bold p-4 border-2 custom-border rounded-full hover:bg-gray-50 transition">
-                            <span>2. Step Two Title</span>
-                            <span class="transform group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <div class="p-4 text-sm mt-2 ml-2">
-                            Detailed explanation of step two goes here.
-                        </div>
-                    </details>
+            <!-- Post 1 -->
+            <div class="p-10 border-b-2 md:border-b-0 md:border-r-2 custom-border hover:bg-gray-50 transition-colors cursor-pointer" onclick="window.location.href='post.html?id=transitioning-from-ic-to-manager'">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-bold text-[var(--accent-color)] uppercase tracking-wider">Engineering Management</span>
+                    <span class="text-xs font-semibold opacity-60">2023-10-15</span>
                 </div>
+                <h2 class="text-2xl font-bold mb-4">Transitioning from IC to Manager</h2>
+                <p class="opacity-80 mb-6">
+                    The shift from writing code to managing people is a complete career change. Here are the lessons I learned during my first year.
+                </p>
+                <a href="post.html?id=transitioning-from-ic-to-manager" class="font-bold underline decoration-2 hover:text-[var(--accent-color)]">Read more →</a>
             </div>
 
-            <!-- Cell 2: Call to Action -->
-            <div class="p-10 md:p-16 flex flex-col justify-between bg-[var(--bg-color)]">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">The Vision</h3>
-                    <p class="mb-8">
-                        The rectangular division allows you to separate distinct thoughts clearly.
-                    </p>
+            <!-- Post 2 -->
+            <div class="p-10 hover:bg-gray-50 transition-colors cursor-pointer" onclick="window.location.href='post.html?id=building-scalable-systems'">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-bold text-[var(--accent-color)] uppercase tracking-wider">Software Architecture</span>
+                    <span class="text-xs font-semibold opacity-60">2023-11-02</span>
                 </div>
-                
-                <!-- Big Button -->
-                <button class="w-full py-6 text-xl font-bold border-2 custom-border rounded-full transition-transform hover:-translate-y-1 hover:shadow-lg"
-                        style="background-color: var(--accent-color); color: var(--accent-text);">
-                    CALL TO ACTION
-                </button>
+                <h2 class="text-2xl font-bold mb-4">Building Scalable Systems</h2>
+                <p class="opacity-80 mb-6">
+                    Key principles for designing systems that can handle growth without collapsing under their own weight.
+                </p>
+                <a href="post.html?id=building-scalable-systems" class="font-bold underline decoration-2 hover:text-[var(--accent-color)]">Read more →</a>
             </div>
         </div>
 

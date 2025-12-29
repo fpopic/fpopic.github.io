@@ -85,7 +85,6 @@
                     if (navLinks) {
                         navLinks.innerHTML = `
                             <a href="index.html" class="hover:text-[var(--accent-color)] transition-colors">Home</a>
-                            <a href="blog.html" class="hover:text-[var(--accent-color)] transition-colors">Blog</a>
                         `;
                     }
                 });
@@ -163,7 +162,7 @@
                         <div class="text-center">
                             <h1 class="text-4xl font-bold mb-4">404</h1>
                             <p class="text-xl">Post not found.</p>
-                            <a href="blog.html" class="text-[var(--accent-color)] underline mt-4 block">Back to Blog</a>
+                            <a href="index.html" class="text-[var(--accent-color)] underline mt-4 block">Back to Home</a>
                         </div>
                     `;
                 });
@@ -171,7 +170,7 @@
             document.getElementById('post-content-placeholder').innerHTML = `
                 <div class="text-center">
                     <p class="text-xl">No post specified.</p>
-                    <a href="blog.html" class="text-[var(--accent-color)] underline mt-4 block">Back to Blog</a>
+                    <a href="index.html" class="text-[var(--accent-color)] underline mt-4 block">Back to Home</a>
                 </div>
             `;
         }
