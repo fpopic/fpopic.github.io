@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post - Personal Page</title>
+
+    <!-- 1. Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- 3. Configuration -->
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --text-color: #111827;
+            --border-color: #000000;
+            --accent-color: #7c3aed;
+            --accent-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .custom-border { border-color: var(--border-color); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+
+    <!-- MAIN CONTAINER -->
+    <div class="w-full max-w-[1200px] border-2 custom-border bg-white shadow-2xl">
+
+        <!-- HEADER -->
+        <div id="header-placeholder"></div>
+        <script>
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    // Inject specific links for this page
+                    const navLinks = document.getElementById('nav-links');
+                    if (navLinks) {
+                        navLinks.innerHTML = `
+                            <a href="index.html" class="hover:text-[var(--accent-color)] transition-colors">Home</a>
+                            <a href="blog.html" class="hover:text-[var(--accent-color)] transition-colors">Blog</a>
+                        `;
+                    }
+                });
+        </script>
+
+        <!-- POST CONTENT CONTAINER -->
+        <div class="p-10 md:p-16">
+            <div id="post-content-placeholder">
+                <p class="text-center opacity-60">Loading post...</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div id="footer-placeholder"></div>
+        <script>
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+        </script>
+
+    </div>
+
+    <script>
+        // Logic to load the specific post content based on URL parameter
+        // Example: post.html?id=my-first-post will try to load posts/my-first-post.html
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        if (postId) {
+            fetch(`posts/${postId}.html`)
+                .then(response => {
+                    if (!response.ok) throw new Error("Post not found");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('post-content-placeholder').innerHTML = data;
+                })
+                .catch(error => {
+                    document.getElementById('post-content-placeholder').innerHTML = `
+                        <div class="text-center">
+                            <h1 class="text-4xl font-bold mb-4">404</h1>
+                            <p class="text-xl">Post not found.</p>
+                            <a href="blog.html" class="text-[var(--accent-color)] underline mt-4 block">Back to Blog</a>
+                        </div>
+                    `;
+                });
+        } else {
+            document.getElementById('post-content-placeholder').innerHTML = `
+                <div class="text-center">
+                    <p class="text-xl">No post specified.</p>
+                    <a href="blog.html" class="text-[var(--accent-color)] underline mt-4 block">Back to Blog</a>
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
